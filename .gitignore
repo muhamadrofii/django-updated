@@ -1,0 +1,8 @@
+myproject/.env/
+/venv/
+*.pyc
+
+*.env
+
+my_venev/
+venev
