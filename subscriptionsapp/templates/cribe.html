@@ -1,0 +1,193 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Quicksand:wght@300..700&display=swap" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'style/cribe.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <script type="text/javascript">
+        function updatePrice() {
+            var plan = document.getElementById('id_plan').value;
+            var priceDisplay = document.getElementById('price-display');
+            var amountField = document.getElementById('id_amount');
+    
+            var price;
+            if (plan == 'trial') {
+                price = 0;  // Harga untuk Basic Plan
+            } else if (plan == 'basic') {
+                price = 29999;  // Harga untuk Premium Plan
+            } else if (plan == 'premium') {
+                price = 109999;  // Harga untuk Enterprise Plan
+            } else if (plan == 'ultimate') {
+                price = 199999;
+            }
+    
+            priceDisplay.textContent = 'Rp ' + price.toLocaleString();  // Menampilkan harga dalam format Rupiah
+            amountField.value = price;  // Menyimpan harga di field hidden
+        }
+    </script>
+  </head>
+  <body>
+    <div class="card mt-50 mb-50">
+        <div class="card-title mx-auto">
+            <h1 style="color: #704FE3;">Form<span style="color: #FFD25D;"> Langganan</span></h1>
+        </div>
+        <div class="nav">
+            <ul class="mx-auto">
+                <!-- <li><a href="#">Account</a></li> -->
+                <!-- <li class="active"><a href="#">Payment</a></li> -->
+            </ul>
+        </div>
+        <!-- <form> -->
+            <form method="POST" action="{% url 'create_payment_link' %}">
+                {% csrf_token %}
+            <span id="card-header">Saved cards:</span>
+            <div class="row row-1">
+                <div class="col-2">
+                    <!-- <i class="bi bi-envelope" ></i> -->
+                    <i class="bi bi-person-fill" style="font-size: 2rem; color: #000;"></i>
+                    <!-- <i class="bi bi-telephone-fill" style="font-size: 2rem; color: #000;"></i> -->
+                </div>
+                <div class="col-7">
+                    
+                    <!-- <input type="text" placeholder="**** **** **** 4296"> -->
+                    <input type="text" id="username" name="username" value="{{ user.username }}" required>
+                </div>
+                <div class="col-3 d-flex justify-content-center">
+                    <a href="#">Username</a>
+                </div>
+            </div>
+            <div class="row row-1">
+                <div class="col-2">
+                    <i class="bi bi-envelope" style="font-size: 2rem; color: #000;"></i>
+                    
+                    <!-- <i class="bi bi-telephone-fill"></i> -->
+                </div>
+                
+                <div class="col-7">
+                    <input type="email" id="email" name="email" value="{{ user.email }}" required>
+                    <!-- <input type="text" placeholder="**** **** **** 3193"> -->
+                </div>
+                <div class="col-3 d-flex justify-content-center">
+                    <a href="#">E-mail</a>
+                </div>
+            </div>
+            <div class="row row-1">
+                <div class="col-2">
+                    <!-- <i class="bi bi-envelope" ></i> -->
+                    <i class="bi bi-telephone-fill" style="font-size: 2rem; color: #000;"></i>
+                </div>
+                <div class="col-7">
+                    
+                    <!-- <input type="text" placeholder="**** **** **** 4296"> -->
+                    <input type="text" id="phone" name="phone" value="">
+                </div>
+                <div class="col-3 d-flex justify-content-center">
+                    <a href="#">No telepon</a>
+                </div>
+            </div>
+            <!-- <span id="card-header">Add new card:</span>
+            <div class="row-1">
+                <div class="row row-2">
+                    <span id="card-inner">Card holder name</span>
+                </div>
+                <div class="row row-2">
+                    <input type="text" placeholder="Bojan Viner">
+                </div>
+            </div> -->
+            <div class="row-1">
+                <div class="row row-2">
+                    <!-- <span id="card-inner">Card holder name</span> -->
+                    <div class="col-md-6">
+                        <label for="postalCode" class="form-label" style="font-family: 'Poppins', sans-serif;">Pilih langganan</label>
+                        <select name="plan" class="form-select" id="id_plan" onchange="updatePrice()">
+                            <option selected disabled></option>
+                            <option value="trial">Trial</option>
+                            <option value="basic">1 Bulan</option>
+                            <option value="premium">6 Bulan</option>
+                            <option value="ultimate">12 Bulan</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row row-2">
+                    <!-- <h1 class="mb-0 yellow">$549</h1> <span>.99</span> -->
+                    <!-- <span id="price-display text-align-center">Rp 0</span> -->
+                    <span id="price-display" class="fs-1">Harga</span>
+                </div>
+                <div>
+                    <!-- <span id="original-price" style="text-decoration: line-through; color: grey;">Rp 0</span> -->
+                    <!-- <span id="discount-price" style="color: green; font-weight: bold;">Rp 0</span> -->
+                    
+                </div>
+                <!-- <div class="row row-2">
+                    <input type="text" placeholder="Bojan Viner">
+                </div> -->
+            </div>
+            <!-- <div class="row three">
+                <div class="col-7">
+                    <div class="row-1">
+                        <div class="row row-2">
+                            <span id="card-inner">Card number</span>
+                        </div>
+                        <div class="row row-2">
+                            <input type="text" placeholder="5134-5264-4">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <input type="text" placeholder="Exp. date">
+                </div>
+                <div class="col-2">
+                    <input type="text" placeholder="CVV">
+                </div>
+            </div> -->
+            <button type="submit" class="btn d-flex mx-auto"><b>Bayar Sekarang</b></button>
+        </form>
+
+        <!-- <button type="submit" id="trialButton" class="btn d-flex mx-auto"><b>Coba Trial (7 Hari)</b></button> -->
+        <form method="POST" action="{% url 'trial' %}">
+            {% csrf_token %}
+            <button type="submit" name="subscription" value="trial" class="btn btn-primary d-flex mx-auto">
+                <b>Coba Trial (7 Hari)</b>
+            </button>
+        </form>
+        
+    </div>
+    <script>
+
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();  // Mencegah pengiriman form standar
+            const formData = new FormData(this); // Mengambil data dari form
+
+            fetch('/create-payment-link/', { // Endpoint Django
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}' // Tambahkan CSRF token
+                },
+                body: formData
+            })
+            .then(response => response.json()) // Parse response sebagai JSON
+            .then(data => {
+                if (data.payment_url) {
+                    window.location.href = data.payment_url; // Redirect ke Midtrans
+                } else {
+                    alert('Error: ' + data.error); // Tampilkan error
+                }
+            })
+            .catch(error => {
+                alert('Network error: ' + error.message);
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>

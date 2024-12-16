@@ -16,11 +16,12 @@ class YouTubeVideoAdmin(admin.ModelAdmin):
 # @admin.register(YouTubeVideo)
 class ChoiceInline(admin.TabularInline):  # Gunakan TabularInline untuk tampilan tabel
     model = Choice
-    extra = 4  # Jumlah pilihan kosong yang ditampilkan di admin
-
+    extra = 4  # Tambahkan 4 baris kosong untuk input pilihan baru
+    fields = ('text', 'image', 'is_correct')  # Field yang akan ditampilkan di inline form
+    show_change_link = True  # Menampilkan link ke halaman edit Choice individual (opsional)
 # Konfigurasi Model Question
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('text', 'quiz', 'order')  # Kolom yang ditampilkan di daftar pertanyaan
+    list_display = ('text', 'quiz', 'order','image')  # Kolom yang ditampilkan di daftar pertanyaan
     list_filter = ('quiz',)  # Filter berdasarkan kuis
     search_fields = ('text',)  # Pencarian berdasarkan teks pertanyaan
     inlines = [ChoiceInline]  # Tambahkan pilihan secara inline

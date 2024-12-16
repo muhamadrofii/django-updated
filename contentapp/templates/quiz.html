@@ -13,6 +13,14 @@
     <script src="https://unpkg.com/feather-icons"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="{% static 'style/quizParents.css' %}">
+    <style>
+        .quiz-image {
+            max-width: 100%; /* Membatasi gambar agar tidak melebihi lebar kontainer */
+            height: auto;   /* Menjaga rasio aspek gambar */
+            max-height: 120px; /* Opsi: Tentukan tinggi maksimum untuk gambar */
+        }
+    </style>
+    
 </head>
 <body>
     <!-- <h1>{{ quiz.title }}</h1> -->
@@ -21,13 +29,19 @@
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <div class="row border rounded-4 py-4 px-5 bg-white shadow box-area">
             <button class="btn btn-ungu btn-sm" style="max-width: 60px; margin-bottom:20px;">
-                <a href="beranda.html" class="btn btn-purple btn-sm d-flex align-items-center" style="max-width: 70px;">
+                <!-- <a href="{% url 'kids' %}" class="btn btn-purple btn-sm d-flex align-items-center" style="max-width: 70px;">
                 <i data-feather="arrow-left" style="font-size: 30px;"></i>
-                </a>
-            </button>
-            <h1>Video Basics <span style="color: #FFD25D;">of Parenting</span></h1><hr>
+                </a> -->
 
-            <form method="POST" action="{% url 'quiz_result' quiz.id %}">
+                <a href="{% if 'kids' in request.path %}{% url 'kids' %}{% elif 'parents' in request.path %}{% url 'parents' %}{% else %}#{% endif %}" 
+   class="btn btn-purple btn-sm d-flex align-items-center" style="max-width: 70px;">
+   <i data-feather="arrow-left" style="font-size: 30px;"></i>
+</a>
+
+            </button>
+            <!-- <h1>Video Basics <span style="color: #FFD25D;">of Parenting</span></h1><hr> -->
+
+            <!-- <form method="POST" action="{% url 'quiz_result' quiz.id %}">
                 {% csrf_token %}
                 {% for question in questions %}
                     <div class="mb-4">
@@ -45,7 +59,53 @@
                     </div>
                 {% endfor %}
                 <button class="button-submit" id="submitBtn" type="submit" onclick="submitQuiz()">Submit</button>
+            </form> -->
+
+            <form method="POST" action="{% url 'quiz_result' quiz.id %}">
+                {% csrf_token %}
+                <div class="quiz-title mb-4">
+                    <!-- <h3>{{ quiz.title }}</h3> -->
+                    <h1>Quiz <span style="color: #FFD25D;">{{ quiz.title }}</span></h1><hr>
+                </div>
+                {% for question in questions %}
+
+                    <div class="mb-4">
+                        <!-- Tampilkan gambar pertanyaan jika ada -->
+                        <h5>{{ question.order }}. {{ question.text }}</h5>
+                        {% if question.image %}
+                            <img src="{{ question.image.url }}" alt="Question Image" class="quiz-image mb-2">
+                        {% endif %}
+                        <div>
+                            {% for choice in question.choices.all %}
+                            <div class="question my-2">
+                                <!-- Tampilkan gambar pilihan jika ada -->
+                                <input class="form-check-input" type="radio" name="question_{{ question.id }}" value="{{ choice.id }}" id="choice_{{ choice.id }}">
+                                
+                                
+                                <label class="form-check-label" for="choice_{{ choice.id }}">
+                                    {% if forloop.counter == 1 %}
+                                    A.
+                                    {% elif forloop.counter == 2 %}
+                                    B.
+                                    {% elif forloop.counter == 3 %}
+                                    C.
+                                    {% elif forloop.counter == 4 %}
+                                    D.
+                                    {% endif %}
+                                </label>
+                                    {{ choice.text }}
+                                {% if choice.image %}
+                                    <img src="{{ choice.image.url }}" alt="Choice Image" class="quiz-image mb-2">
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        
+                        </div>
+                    </div>
+                {% endfor %}
+                <button class="button-submit" id="submitBtn" type="submit" onclick="submitQuiz()">Submit</button>
             </form>
+            
 
             <!-- SOAL -->
             <!-- <form id="quizParents">

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import uuid
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render
@@ -10,10 +10,11 @@ from django.conf import settings
 from django.utils.timezone import now
 from datetime import timedelta
 import time
+from django.contrib import messages
 
 # Create your views here.
 def langganan(request):
-    return render(request, 'formLangganan.html')
+    return render(request, 'cribe.html', {'user': request.user})
 
 def subscribe(request):
     return render(request, 'subscribe.html')
@@ -26,14 +27,15 @@ def create_payment_link(request):
         plan = request.POST.get('plan')
 
         # Validasi input plan
-        if plan not in ['basic', 'premium', 'ultimate']:
+        if plan not in ['trial','basic', 'premium', 'ultimate']:
             return JsonResponse({'error': 'Invalid plan selected'}, status=400)
 
         # Tentukan harga berdasarkan plan yang dipilih
         plan_prices = {
-            'basic': 29000,
-            'premium': 99000,
-            'ultimate': 199000
+            'trial': 0,
+            'basic': 29999,
+            'premium': 109999,
+            'ultimate': 199999,
         }
         amount = plan_prices[plan]
 
@@ -151,3 +153,14 @@ def payment_notification(request):
 def payment_success(request):
     return render(request, 'payment_success.html')
 
+
+def trial(request):
+    if request.method == "POST":
+        # Update langganan pengguna menjadi trial dan aktif
+        subscription = Subscription(user=request.user, plan="trial", status="active")
+        subscription.save()
+
+        messages.success(request, "Anda telah memulai percakapan trial (7 hari) yang baru.")
+        return redirect('payment_success')  # Arahkan ke halaman sukses setelah update langganan
+
+    return render(request, "payment_success.html")

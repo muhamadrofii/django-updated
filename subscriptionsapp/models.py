@@ -64,6 +64,7 @@ class Transaction(models.Model):
 def default_end_date(subscription):
     """Mengembalikan end_date yang sesuai dengan jenis langganan."""
     plan_duration = {
+        'trial': 7,
         'basic': 30,     # 30 hari untuk Basic Plan
         'premium': 60,   # 60 hari untuk Premium Plan
         'enterprise': 90 # 90 hari untuk Enterprise Plan
@@ -76,6 +77,7 @@ def default_end_date(subscription):
 
 class Subscription(models.Model):
     PLAN_CHOICES = [
+        ('trial', 'Trial Plan'),
         ('basic', 'Basic Plan'),
         ('premium', 'Premium Plan'),
         ('enterprise', 'Enterprise Plan'),
@@ -88,6 +90,7 @@ class Subscription(models.Model):
     ]
     
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='subscription')  # OneToOneField dengan related_name
     transaction = models.OneToOneField('Transaction', on_delete=models.CASCADE, null=True, blank=True)
     # plan = models.CharField(max_length=20, choices=PLAN_CHOICES)
     plan = models.CharField(max_length=20)

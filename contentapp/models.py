@@ -4,6 +4,8 @@ from django.db import models
 class YouTubeVideo(models.Model):
     CATEGORY_CHOICES = [
         ('Post Test', 'Post Test'),
+        ('Post Parent', 'Post Parent'),
+        ('Post Kids', 'Post Kids'),
         ('Parenting Dasar', 'Parenting Dasar'),
         ('Ide Bekal Sekolah', 'Ide Bekal Sekolah'),
         ('Ruang Baca', 'Ruang Baca'),
@@ -36,15 +38,17 @@ class Quiz(models.Model):
 class Question(models.Model):
     quiz = models.ForeignKey(Quiz, related_name='questions', on_delete=models.CASCADE)
     text = models.TextField()
+    image = models.ImageField(upload_to='questions_images/', blank=True, null=True)  # Tambahkan field gambar
     order = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return f"{self.text[:50]}"
 
 class Choice(models.Model):
-    question = models.ForeignKey(Question, related_name='choices', on_delete=models.CASCADE)
-    text = models.CharField(max_length=255)
+    question = models.ForeignKey(Question, related_name='choices', on_delete=models.CASCADE, blank=True, null=True)
+    text = models.CharField(max_length=255, blank=True, null=True)
+    image = models.ImageField(upload_to='choices_images/', blank=True, null=True)  # Tambahkan field gambar
     is_correct = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.text
+        return self.text or " "

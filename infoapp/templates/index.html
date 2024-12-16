@@ -46,7 +46,7 @@
             <div class="text-column mx-4" style="text-align: center;">
                 <h1>Temukan <span style="color: #704FE3;">inspirasi</span> dalam <br> setiap perjalanan <span style="color: #FFD25D;">belajar</span>.</h1>
                 <h6>Selamat datang di dunia belajar seru! Anak-anak 5-9 tahun bisa bermain <br>dan belajar sambil berpetualang dengan karakter-karakter menarik!</h6>
-                <a class="btn btn-warning text-white rounded-4 py-2 px-3" href="login.html" role="button">Belajar Sekarang</a>
+                <a class="btn btn-warning text-white rounded-4 py-2 px-3" href="{% url 'account_login' %}" role="button">Belajar Sekarang</a>
             </div>
 
             <!-- Kolom Kanan -->
@@ -73,7 +73,7 @@
                     <li>Tingkatkan pemahaman pola asuh dan keterampilan anak dengan materi bertahap yang relevan dan aplikatif.</li>
                     <li>Temukan cara belajar bersama yang menyenangkan melalui aktivitas interaktif yang melibatkan seluruh keluarga.</li>
                 </ul>
-                <a class="btn btn-warning text-white rounded-4 py-2 px-3" href="login.html" role="button">Belajar Sekarang</a>
+                <a class="btn btn-warning text-white rounded-4 py-2 px-3" href="{% url 'account_login' %}" role="button">Belajar Sekarang</a>
             </div>
         </div>
         <div class="container-program-kanan">
@@ -85,7 +85,7 @@
                     <li>Gabungkan edukasi dengan hiburan dalam pengalaman bermain yang penuh manfaat.</li>
                     <li>Ajak anak menghadapi tantangan seru yang mendorong mereka berpikir kritis dan menemukan solusi kreatif.</li>
                 </ul>
-                <a class="btn btn-warning text-white rounded-4 py-2 px-3" href="login.html" role="button">Belajar Sekarang</a>
+                <a class="btn btn-warning text-white rounded-4 py-2 px-3" href="{% url 'account_login' %}" role="button">Belajar Sekarang</a>
             </div>
             <img src="{% static 'images/index/program2.png' %}" alt="Program 2" class="img-program-kanan">
         </div>
@@ -128,6 +128,112 @@
     <div id="testimonial" class="testimonial py-5">
         <h1 style="color: #ffffff;">Testimonial<span style="color: #FFD25D;">s</span>.</h1>
         <div class="container-testimonial">
+            <div class="popup" id="popup1">
+                <div class="popup-content">
+                    <a href="#testimonial" class="close-popup">&times;</a>
+                    <img class="foto-testimoni" src="{% static 'images/index/testimoni1.png' %}" alt="Testimoni 1">
+                    <h3>Alya Pratiwi</h3>
+                    <div class="stars">
+                        <span class="star full">★</span>
+                        <span class="star full">★</span>
+                        <span class="star full">★</span>
+                        <span class="star full">★</span>
+                        <span class="star full">★</span>
+                    </div>
+                    <p>"Aplikasi ini benar-benar membantu anak saya belajar dengan cara yang menyenangkan! Permainan edukatifnya sangat kreatif, dan saya senang melihat anak saya semakin percaya diri setiap hari."</p>
+                </div>
+            </div>
+            <div class="popup" id="popup2">
+                <div class="popup-content">
+                    <a href="#testimonial" class="close-popup">&times;</a>
+                    <img class="foto-testimoni" src="{% static 'images/index/testimoni2.png' %}" alt="Testimoni 2">
+                    <h3>Raka Ananta</h3>
+                    <div class="stars">
+                        <span class="star full">★</span>
+                        <span class="star full">★</span>
+                        <span class="star full">★</span>
+                        <span class="star full">★</span>
+                        <span class="star full">★</span>
+                    </div>
+                    <p>"Sebagai orang tua yang sibuk, aplikasi ini menjadi solusi sempurna untuk mendukung pembelajaran anak saya. Interaktif, menarik, dan memberikan aktivitas berkualitas tanpa perlu khawatir!"</p>
+                </div>
+            </div>
+            <div class="popup" id="popup3">
+                <div class="popup-content">
+                    <a href="#testimonial" class="close-popup">&times;</a>
+                    <img class="foto-testimoni" src="{% static 'images/index/testimoni3.png' %}" alt="Testimoni 3">
+                    <h3>Nindya Maharani</h3>
+                    <div class="stars">
+                        <span class="star full">★</span>
+                        <span class="star full">★</span>
+                        <span class="star full">★</span>
+                        <span class="star full">★</span>
+                        <span class="star empty">★</span>
+                    </div>
+                    <p>"Saya tidak pernah menyangka belajar bisa semenyenangkan ini. Anak saya selalu antusias membuka aplikasi ini setiap pagi. Sungguh aplikasi yang menghubungkan keluarga dengan penuh cinta."</p>
+                </div>
+            </div>
+            <div class="popup" id="popup4">
+                <div class="popup-content">
+                    <a href="#testimonial" class="close-popup">&times;</a>
+                    <img class="foto-testimoni" src="{% static 'images/index/testimoni4.png' %}" alt="Testimoni 4">
+                    <h3>Bayu Pratama</h3>
+                    <div class="stars">
+                        <span class="star full">★</span>
+                        <span class="star full">★</span>
+                        <span class="star full">★</span>
+                        <span class="star full">★</span>
+                        <span class="star full">★</span>
+                    </div>
+                    <p>"Aplikasi ini membawa pendekatan baru yang kreatif untuk belajar. Anak saya senang sekali dengan fitur-fiturnya, dan saya bisa memantau perkembangan belajarnya langsung dari ponsel."</p>
+                </div>
+            </div>
+            <div class="popup" id="popup5">
+                <div class="popup-content">
+                    <a href="#testimonial" class="close-popup">&times;</a>
+                    <img class="foto-testimoni" src="{% static 'images/index/testimoni5.png' %}" alt="Testimoni 5">
+                    <h3>Dewi Larasati</h3>
+                    <div class="stars">
+                        <span class="star full">★</span>
+                        <span class="star full">★</span>
+                        <span class="star full">★</span>
+                        <span class="star full">★</span>
+                        <span class="star empty">★</span>
+                    </div>
+                    <p>"Sebagai orang tua yang sibuk, aplikasi ini menjadi solusi sempurna untuk mendukung pembelajaran anak saya. Interaktif, menarik, dan memberikan aktivitas berkualitas tanpa perlu khawatir!"</p>
+                </div>
+            </div>
+            <div class="popup" id="popup6">
+                <div class="popup-content">
+                    <a href="#testimonial" class="close-popup">&times;</a>
+                    <img class="foto-testimoni" src="{% static 'images/index/testimoni6.png' %}" alt="Testimoni 6">
+                    <h3>Bagas Mahardika</h3>
+                    <div class="stars">
+                        <span class="star full">★</span>
+                        <span class="star full">★</span>
+                        <span class="star full">★</span>
+                        <span class="star full">★</span>
+                        <span class="star empty">★</span>
+                    </div>
+                    <p>"Saya suka bagaimana aplikasi ini menggabungkan pendidikan dengan kesenangan. Anak saya kini lebih tertarik belajar dibandingkan menonton TV atau bermain game biasa!"</p>
+                </div>
+            </div>
+            <div class="popup" id="popup7">
+                <div class="popup-content">
+                    <a href="#testimonial" class="close-popup">&times;</a>
+                    <img class="foto-testimoni" src="{% static 'images/index/testimoni7.png' %}" alt="Testimoni 7">
+                    <h3>Nayara Salsabila</h3>
+                    <div class="stars">
+                        <span class="star full">★</span>
+                        <span class="star full">★</span>
+                        <span class="star full">★</span>
+                        <span class="star full">★</span>
+                        <span class="star full">★</span>
+                    </div>
+                    <p>"Sebagai orang tua yang sibuk, aplikasi ini menjadi solusi sempurna untuk mendukung pembelajaran anak saya. Interaktif, menarik, dan memberikan aktivitas berkualitas tanpa perlu khawatir!"</p>
+                </div>
+            </div>
+
             <div class="testimonial-card">
                 <div class="card">
                     <img src="{% static 'images/index/testimoni1.png' %}" alt="Testimoni 1">
@@ -139,7 +245,7 @@
                         <span class="star full">★</span>
                         <span class="star full">★</span>
                     </div>
-                    <a class="btn rounded-4 py-2 px-3" href="loginForm.html" role="button">Lihat Selengkapnya</a>
+                    <a class="btn rounded-4 py-2 px-3" href="#popup1" role="button">Lihat Selengkapnya</a>
                 </div>
                 <div class="card">
                     <img src="{% static 'images/index/testimoni2.png' %}" alt="Testimoni 2">
@@ -151,7 +257,7 @@
                         <span class="star full">★</span>
                         <span class="star full">★</span>
                     </div>
-                    <a class="btn rounded-4 py-2 px-3" href="loginForm.html" role="button">Lihat Selengkapnya</a>
+                    <a class="btn rounded-4 py-2 px-3" href="#popup2" role="button">Lihat Selengkapnya</a>
                 </div>
                 <div class="card">
                     <img src="{% static 'images/index/testimoni3.png' %}" alt="Testimoni 3">
@@ -163,7 +269,7 @@
                         <span class="star full">★</span>
                         <span class="star empty">★</span>
                     </div>
-                    <a class="btn rounded-4 py-2 px-3" href="loginForm.html" role="button">Lihat Selengkapnya</a>
+                    <a class="btn rounded-4 py-2 px-3" href="#popup3" role="button">Lihat Selengkapnya</a>
                 </div>
                 <div class="card">
                     <img src="{% static 'images/index/testimoni4.png' %}" alt="Testimoni 4">
@@ -175,7 +281,7 @@
                         <span class="star full">★</span>
                         <span class="star full">★</span>
                     </div>
-                    <a class="btn rounded-4 py-2 px-3" href="loginForm.html" role="button">Lihat Selengkapnya</a>
+                    <a class="btn rounded-4 py-2 px-3" href="#popup4" role="button">Lihat Selengkapnya</a>
                 </div>
                 <div class="card">
                     <img src="{% static 'images/index/testimoni5.png' %}" alt="Testimoni 5">
@@ -187,7 +293,7 @@
                         <span class="star full">★</span>
                         <span class="star empty">★</span>
                     </div>
-                    <a class="btn rounded-4 py-2 px-3" href="loginForm.html" role="button">Lihat Selengkapnya</a>
+                    <a class="btn rounded-4 py-2 px-3" href="#popup5" role="button">Lihat Selengkapnya</a>
                 </div>
                 <div class="card">
                     <img src="{% static 'images/index/testimoni6.png' %}" alt="Testimoni 6">
@@ -199,7 +305,7 @@
                         <span class="star full">★</span>
                         <span class="star empty">★</span>
                     </div>
-                    <a class="btn rounded-4 py-2 px-3" href="loginForm.html" role="button">Lihat Selengkapnya</a>
+                    <a class="btn rounded-4 py-2 px-3" href="#popup6" role="button">Lihat Selengkapnya</a>
                 </div>
                 <div class="card">
                     <img src="{% static 'images/index/testimoni7.png' %}" alt="Testimoni 7">
@@ -211,7 +317,57 @@
                         <span class="star full">★</span>
                         <span class="star full">★</span>
                     </div>
-                    <a class="btn rounded-4 py-2 px-3" href="loginForm.html" role="button">Lihat Selengkapnya</a>
+                    <a class="btn rounded-4 py-2 px-3" href="#popup7" role="button">Lihat Selengkapnya</a>
+                </div>
+                <div class="card">
+                    <div class="card-testi">
+                        <h5 style="margin-bottom: 20px;">Ingin memberi testimoni?</h5>
+                        <a class="btn rounded-4 py-2 px-3" href="#" role="button" id="openModalButton"data-bs-toggle="modal" data-bs-target="#resultModal">Klik Disini!</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Input Testimoni -->
+            <div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <h6 class="modal-title" id="resultModalLabel">Yuk berikan testimoni dan bagikan pengalaman serumu dengan kami!</h6>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <form action="">
+                            <div class="input-group">
+                                <input type="text" placeholder="Nama">
+                            </div>
+                            <div class="input-group">
+                                <input type="text" placeholder="Testimoni">
+                            </div>
+                            <div class="testimonial-rating">
+                                <p id="rating-value">Rating Anda: 0</p>
+                                <div class="stars">
+                                    <span data-value="1">&#9733;</span>
+                                    <span data-value="2">&#9733;</span>
+                                    <span data-value="3">&#9733;</span>
+                                    <span data-value="4">&#9733;</span>
+                                    <span data-value="5">&#9733;</span>
+                                </div>
+                            </div>
+                        </form>
+                        <button type="submit" class="button-footer" data-bs-toggle="modal" data-bs-target="#terkirimModal">Kirim Testimoni</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Testimoni Berhasil Terkirim -->
+            <div class="modal fade" id="terkirimModal" tabindex="-1" aria-labelledby="terkirimModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <h5 class="modal-title" id="terkirimModalLabel" style="color: #704FE3;">Terima kasih telah memberikan testimoni!</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                        <p style="color: #464646; text-align: center; margin: 0px 0px 40px 0px;">Saran dan masukan Anda sangat membantu kami untuk mengembangkan SmartBeez agar lebih baik ke depannya.</p>
+                        <div class="button-tutup">
+                            <button type="button" class="btn-tutup" data-bs-dismiss="modal">Tutup</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -269,7 +425,7 @@
                                 <li>Akses semua fitur game edukasi.</li>
                                 <li>Akses berita terkini.</li>
                                 <li>Chat dan konsultasi untuk perkembangan anak.</li>
-                        </ul>
+                            </ul>
                         </div>
                         <a class="btn rounded-4 py-2 px-3" href='{% url 'account_login' %}' role="button">Mulai Berlangganan</a>
                     </div>
@@ -292,7 +448,7 @@
                                 <li>Akses semua fitur game edukasi.</li>
                                 <li>Akses berita terkini.</li>
                                 <li>Chat dan konsultasi untuk perkembangan anak.</li>                              
-                        </ul>
+                            </ul>
                         </div>
                         <a class="btn-tengah rounded-4 py-2 px-3" href='{% url 'account_login' %}' role="button">Mulai Berlangganan</a>
                     </div>
@@ -315,8 +471,7 @@
                                 <li>Akses semua fitur game edukasi.</li>
                                 <li>Akses berita terkini.</li>
                                 <li>Chat dan konsultasi untuk perkembangan anak.</li>
-                                
-                        </ul>
+                            </ul>
                         </div>
                         <a class="btn rounded-4 py-2 px-3" href="{% url 'account_login' %}" role="button">Mulai Berlangganan</a>
                     </div>
@@ -353,8 +508,8 @@
             <div class="footer-column">
                 <h4>Produk</h4>
                 <ul>
-                    <li><a href="login.html">Video Learning</a></li>
-                    <li><a href="login.html">Games</a></li>
+                    <li><a href="{% url 'account_login' %}">Video Learning</a></li>
+                    <li><a href="{% url 'account_login' %}">Games</a></li>
                     <li><a href="{% url 'berita' %}">Berita</a></li>
                 </ul>
             </div>
@@ -383,5 +538,6 @@
 {% block javascript %}
 <!-- Tempat untuk memasukkan stylesheet atau JS yang spesifik halaman -->
 <script>feather.replace();</script>
+<script src="{% static 'js/testimoni.js' %}"></script>
 
 {% endblock %}

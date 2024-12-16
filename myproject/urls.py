@@ -47,10 +47,13 @@ urlpatterns = [
     path('parent/', contentapp_views.parent, name ='parent'),
     # path('quiz', contentapp_views.quiz, name='quiz'),
     path('parents/quiz/<int:quiz_id>/', contentapp_views.quiz_detail, name='quiz_detail'),
+    path('kids/quiz/<int:quiz_id>/', contentapp_views.quiz_detail, name='quiz_detail'),
     path('create-payment/payment-notification/', subscriptionsapp_views.payment_notification, name='payment_notification'),
     # path('payment-success/', payment_success, name='payment-success'),
     path('quiz/result/<int:quiz_id>/', contentapp_views.quiz_detail, name='quiz_result'),
     re_path(r'^payment-success(?:/.*)?$', subscriptionsapp_views.payment_success, name='payment_success'),
+    # path('start-trial/', subscriptionsapp_views.create_payment_link, name='start_trial'),
+    path('trial/', subscriptionsapp_views.trial, name='trial'),
 
 ]
 

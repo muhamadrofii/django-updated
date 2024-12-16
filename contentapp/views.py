@@ -82,6 +82,40 @@ def quiz_detail(request, quiz_id):
     })
 
 
+def quiz_detail2(request, quiz_id):
+    quiz = get_object_or_404(Quiz, id=quiz_id)
+    questions = quiz.questions.prefetch_related('choices').order_by('order')
+
+    if request.method == 'POST':
+        score = 0
+        total_questions = questions.count()
+        
+        for question in questions:
+            selected_choice_id = request.POST.get(f'question_{question.id}')
+            if selected_choice_id:
+                selected_choice = Choice.objects.get(id=selected_choice_id)
+                if selected_choice.is_correct:
+                    score += 1
+        
+        score_percentage = (score / total_questions) * 100 if total_questions > 0 else 0
+
+        return render(request, 'quiz_result.html', {
+            'quiz': quiz,
+            'score': score,
+            'total_questions': total_questions,
+            'score_percentage': score_percentage
+        })
+
+    # Inisialisasi variabel hanya jika diperlukan
+    total_questions = questions.count()  # Untuk GET ini aman
+    print("Quiz:", quiz)
+    print("Questions:", questions)
+    return render(request, 'quiz2.html', {
+        'quiz': quiz,
+        'questions': questions
+    })
+
+
 # def quiz(request):
     # return render(request, 'quiz.html')
 

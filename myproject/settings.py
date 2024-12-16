@@ -60,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "allauth.account.middleware.AccountMiddleware",
+    # 'subscriptionsapp.middlewares.RedirectOnSubscriptionMiddleware',
 ]
 
 ROOT_URLCONF = 'myproject.urls'
@@ -185,3 +186,11 @@ env = environ.Env()
 
 # Baca file .env
 environ.Env.read_env()
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = env('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = env('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
+
+MIDTRANS_SERVER_KEY = env('MIDTRANS_SERVER_KEY')
+MIDTRANS_CLIENT_KEY = env('MIDTRANS_CLIENT_KEY')
+MIDTRANS_IS_PRODUCTION = env.bool('MIDTRANS_IS_PRODUCTION')
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')

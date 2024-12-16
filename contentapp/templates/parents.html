@@ -40,7 +40,7 @@
     <button class="btn btn-outline-primary" onclick="filterVideos('Parenting Dasar')">Parenting Dasar</button>
     <button class="btn btn-outline-primary" onclick="filterVideos('Ide Bekal Sekolah')">Ide Bekal Sekolah</button>
     <button class="btn btn-outline-primary" onclick="filterVideos('Ruang Baca')">Ruang Baca</button>
-    <button class="btn btn-outline-primary" onclick="filterVideos('Post Test')">Post Test</button>
+    <button class="btn btn-outline-primary" onclick="filterVideos('Post Parent')">Post Test</button>
     <!-- <button onclick="filterVideos('postTest')">Post Test</button> -->
     <!-- <button class="btn btn-outline-primary" onclick="filterVideos('Science')">Science</button> -->
   </section>
@@ -51,10 +51,10 @@
         <!-- Gambar universal untuk semua kategori -->
         <img src="{{ video.image.url }}" alt="{{ video.title }}">
         <h5>{{ video.title }}</h5>
-        {% if video.category == "Post Test" %}
-          <!-- URL khusus untuk kategori Post Test -->
-          <a href="{{ video.youtube_id }}" class="btn btn-primary">Kerjakan Post Test</a>
-        {% else %}
+        {% if video.category == "Post Kids" or video.category == "Post Parent" %}
+        <!-- URL khusus untuk kategori Post Kids dan Post Parents -->
+        <a href="{{ video.youtube_id }}" class="btn btn-primary">Kerjakan Post Test</a>
+      {% else %}
           <!-- URL default untuk kategori lainnya -->
           <a href="{% url 'watch_video' youtube_id=video.youtube_id %}" class="btn btn-primary">Tonton Video</a>
         {% endif %}
