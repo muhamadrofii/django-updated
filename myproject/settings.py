@@ -147,15 +147,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # AUTH_USER_MODEL = 'accountsapp.CustomUser'
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'  # Bisa 'username', 'email', atau 'username_email'
 # ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = True  # Set ke False jika hanya menggunakan email
+ACCOUNT_USERNAME_REQUIRED = False  # Set ke False jika hanya menggunakan email
+ACCOUNT_EMAIL_VERIFICATION = 'none'  # Tidak memerlukan verifikasi email
+ACCOUNT_EMAIL_REQUIRED = False       # Email tidak wajib
 
 # CCOUNT_AUTHENTICATION_METHOD = 'email' 
-ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_EMAIL_REQUIRED = True
 # ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_FORMS = {
-    'signup': 'accountsapp.forms.CustomSignupForm',  # Ganti `myapp` dengan nama aplikasi Anda
+    'signup': 'accountsapp.forms.CustomSignupForm',
     'login': 'accountsapp.forms.CustomLoginForm',
 }
+
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',

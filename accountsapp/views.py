@@ -94,8 +94,8 @@ def register(request):
 #         'avatars': avatars,
 #         'current_avatar': current_avatar,
 #     })
-
-@login_required
+# from subscriptionsapp.decoratos import subscription_required
+@subscription_required
 def profil(request):
     user = request.user
 

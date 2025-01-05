@@ -37,11 +37,11 @@
                     
                     {% if form.errors %}
                     <div class="alert alert-danger">
-                        {% for field, errors in form.errors.items %}
-                            {% for error in errors %}
-                                <p>{{ error }}</p>
+                        <ul>
+                            {% for field, errors in form.errors.items %}
+                                <li>{{ field }}: {{ errors|join:", " }}</li>
                             {% endfor %}
-                        {% endfor %}
+                        </ul>
                     </div>
                     {% endif %}
                     
@@ -54,6 +54,7 @@
                     <div class="input-group mb-2">
                         <input type="password" name="password2" class="form-control form-control-lg bg-light fs-6" placeholder="Confirm Password" required>
                     </div>
+                    <!-- {{ form.as_p }}  -->
                     <div class="input-group mb-3">
                         <button type="submit" class="btn-login btn btn-lg w-100 fs-6">Register</button>
                     </div>

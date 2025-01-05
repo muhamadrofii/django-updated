@@ -2,8 +2,10 @@ from django.shortcuts import render, get_object_or_404
 from .models import YouTubeVideo
 # get_object_or_404
 from .models import Quiz, Choice
+from subscriptionsapp.decoratos import subscription_required
+# @subscription_required
 # get_object_or_404
-
+@subscription_required
 def kids(request):
     category_filter = request.GET.get('category', None)
 
@@ -23,7 +25,7 @@ def kids(request):
     return render(request, 'kids.html', {'videos': videos, 'selected_category': category_filter})
 
 
-
+@subscription_required
 def parents(request):
     category_filter = request.GET.get('category', None)
 
@@ -41,13 +43,16 @@ def parents(request):
 
     return render(request, 'parents.html', {'videos': videos, 'selected_category': category_filter})
 
+@subscription_required
 def parent(request):
     return render(request, 'parent.html')
 
+@subscription_required
 def watch_video(request, youtube_id):
     video = get_object_or_404(YouTubeVideo, youtube_id=youtube_id)  # Ambil video berdasarkan ID
     return render(request, 'watch_video.html', {'video': video})
 
+@subscription_required
 def quiz_detail(request, quiz_id):
     quiz = get_object_or_404(Quiz, id=quiz_id)
     questions = quiz.questions.prefetch_related('choices').order_by('order')
@@ -81,7 +86,7 @@ def quiz_detail(request, quiz_id):
         'questions': questions
     })
 
-
+@subscription_required
 def quiz_detail2(request, quiz_id):
     quiz = get_object_or_404(Quiz, id=quiz_id)
     questions = quiz.questions.prefetch_related('choices').order_by('order')

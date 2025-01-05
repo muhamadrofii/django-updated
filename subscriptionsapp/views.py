@@ -11,8 +11,10 @@ from django.utils.timezone import now
 from datetime import timedelta
 import time
 from django.contrib import messages
+from subscriptionsapp.decoratos import subscription_required
 
 # Create your views here.
+@subscription_required
 def langganan(request):
     return render(request, 'cribe.html', {'user': request.user})
 
@@ -149,11 +151,11 @@ def payment_notification(request):
         return HttpResponse(str(e), status=400)
     
 
-
+@subscription_required
 def payment_success(request):
     return render(request, 'payment_success.html')
 
-
+@subscription_required
 def trial(request):
     if request.method == "POST":
         # Update langganan pengguna menjadi trial dan aktif
